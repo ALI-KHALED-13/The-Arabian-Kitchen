@@ -1,0 +1,344 @@
+@import url('https://fonts.googleapis.com/css2?family=El+Messiri&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Markazi+Text&display=swap');
+:root {
+    scroll-behavior: smooth;
+    font-size: 62.5%;
+    --bg-color1: rgb(36, 36, 36);
+    --bg-color2: rgb(32, 34, 33);
+    background-color: rgb(34, 33, 33);
+}
+*{
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'El Messiri', sans-serif;;
+    font-weight: 500;
+    font-size: 2.6vw;
+    text-align: center;
+}
+::selection {background-color: tomato;}
+
+/*scroll bar*/
+::-webkit-scrollbar {
+    width: 1.5vw;
+}
+::-webkit-scrollbar-track {
+    background-color: rgb(107, 104, 104);
+}
+::-webkit-scrollbar-thumb {
+    background-color: rgb(253, 153, 70);
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(211, 166, 68);
+    width: 2vw;
+}
+::-webkit-search-button {display: none;}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+body {overflow-x: hidden;}
+@media screen and (min-width: 1050px){ body{margin: 0px 10%;}}
+
+/* back to top button */
+.toTop {
+    position: fixed;
+    width: 7vw;
+    height: 7vw;
+    bottom: 2vh;
+    right: 0.5vw;
+    display: none;
+    z-index: 333;
+    cursor: pointer;
+}
+
+
+/*cart button*/
+#cart {
+    position: fixed;
+    width: 18vw;
+    min-height: 3vw;
+    left: -15vw;
+    top: 30vh;
+    z-index: 333;
+    text-decoration: none;
+    color: white;
+    background-color: teal;
+    padding: 1% 0;
+    border-radius: 0% 30% 30% 0%;
+    font-size: 2vw;
+    transition: all 0.3s;
+}
+#cart > span {
+    background-color: whitesmoke;
+    color:teal;
+    border-radius: 10px;
+    font-size: 1.5em;
+    padding: 0 2%;;
+    position: relative;
+    right: -10%;
+}
+#cart:hover {
+    left: 0;
+}
+
+ nav, article, footer, header > *, ul {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+/*the header and logo part*/
+header {
+    min-height: 30vh;
+    overflow-x: hidden;
+    position: relative;
+    background-color: rgb(252, 218, 109);
+}
+header #logo {
+    font-size: max(2vw, 2vh);
+    margin: 1%;
+}
+header #logo  img {
+    width: max(20%, 100px);
+    height: auto;
+    border-radius: 15px;
+    margin: 2%;
+}
+
+/*the slide show */
+
+header > #slideshow {
+    justify-content: flex-start;
+    background-color:  #241f1f88;
+    overflow-x: scroll;
+    height: min(30vw, 35vh);
+}
+header > #slideshow > img {
+    display: block;
+    width: 30%;
+    height: 90%;
+    margin: 1% 2%;
+    border-radius: 5px;
+}
+header > #slideshow::-webkit-scrollbar {height: 1.5vw;}
+
+header > [alt$='arrow'] {display: none;}
+
+@media screen and (min-width: 1050px){
+    header > #slideshow {overflow-x: hidden; scroll-behavior: smooth;}
+    header >  [alt$='arrow'] {
+        display: block;
+        position: absolute; /* relative to the header, not the slideshow*/
+        top: 70%;
+        width: 5%;
+        box-shadow: 2px 4px 10px black;
+    }
+    header > [alt^='left'] {left: 0;}
+    header > [alt^='right'] {right: 0;}
+}
+
+/* القوائم*/
+nav {
+    background-color: rgb(17, 15, 15);
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+    overflow: hidden;
+    padding: 0;
+}
+
+ nav > a {
+     text-decoration: none;
+     text-transform: capitalize;
+     color: rgb(255, 233, 35);
+     font-size: max(2.6vw, 2vh);
+     padding: 3%;
+ }
+ nav > a:hover {
+     background-color: rgb(255, 233, 35);
+     color: snow;
+ }
+
+/*الصفحة الرئيسية*/
+article {
+    min-height: 60vh;
+    background-color: rgb(241, 224, 123); 
+    border-bottom: 2px solid white;
+}
+article > section {
+    width: 50%;
+    padding: 3%;
+}
+article > section > img {
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+}
+footer {
+    color: rgb(237, 245, 237);
+    background-color: rgb(15, 15, 15);
+    min-height: 10vh;
+    padding: 2%;
+    justify-content: space-evenly;
+}
+/*لجميع طواقم الطعام*/
+.hall {
+    background-color: rgb(255, 250, 205);
+    animation: fadeInRight 0.75s;
+    min-height: 50vh;
+    word-wrap: break-all;
+}
+
+ul {
+    list-style-type: none;
+    min-height: 10%;
+    margin: 1%;
+}
+ul > li {
+    margin: 1%;
+    padding: 1%;
+    border: 3px solid rgb(255, 172, 19);
+    border-radius: 20%;
+    font-size: 1.5vw;
+    cursor: pointer;
+}
+ul > li:hover {
+    background-color: rgb(255, 172, 19);
+    color: white;
+}
+.products {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: stretch;
+    padding: 2%;
+}
+.product {
+    min-height: 25vh; 
+    width: 32%;
+    background-color: rgb(255, 255, 155);
+    border: 1px dotted gray;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 0.5%;
+    animation: fadeInRight 0.75s; 
+}
+.product > img {
+    border-radius: 5px;
+    width: 100%;
+}
+.product > div  > p {
+    font-size: 2vw;
+    text-align: center;
+    margin: 1%;
+}
+.price {direction: ltr;}
+span {
+    font-size: inherit;
+    margin: 1%;
+    -webkit-user-select: none;
+    -ms-user-select: none; 
+    user-select: none;
+}
+.add {color: green}
+.minus {color: red}
+.add, .minus {cursor: pointer;}
+.product > div > button {
+    padding: 1%;
+    margin: 1%;
+    background-color: rgb(245, 69, 0) ;
+    color: rgb(245, 235, 235);
+    font-size: 1.8vw;
+    border-radius: 5px;
+}
+.product > div > button:focus {
+    outline: none;
+    background-color: rgb(255, 145, 0);
+}
+
+/*شكل صفحة عربة التسوق*/
+/*there are some internal styles there*/
+#message {color: rgb(238, 68, 26)}
+.item {
+    width: 90%;
+    height: 25vh;
+    padding: 0;
+    margin: 1%;
+    background-color: rgb(243, 221, 96);
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+.item > img {
+    height: 100%;
+    width: 25%;
+}
+.item > .desc {
+    font-size: 2.5vw;
+    width: 60%;
+    font-family: 'Markazi Text', serif;
+}
+.item > .total {
+    width: 10%;
+    font-size: 2.5vw;
+    border-right: 1px solid honeydew;
+    font-family: 'Markazi Text', serif;
+}
+.item > div {
+    width: 5%;
+    align-self: stretch;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: space-evenly;
+    align-items: flex-end;
+}
+.item > div > img {
+    display: block;
+    width: 60%;
+    cursor: pointer;
+}
+
+
+
+@media only screen and (max-width: 1024px) {
+    * {font-size: 2.6vh;}
+    .toTop {display: none;}
+    #cart {
+        font-size: 2.5vw;
+        left: -13vw
+    }
+    #cart > span {right: -8%;}
+    article {min-height: 30vh;}
+    h1 {font-size: 4vh;}
+    ul > li {font-size: 3.5vw;}
+    .product > div  > p {font-size: 3vw;}
+    /*cart page*/
+    .item {height: 20vh;}
+    .item > img {
+        width: 30%; 
+        height: 90%;
+    }
+    .item > .desc, .item > .total { 
+        height: 90%;
+        font-size: 3vw;
+    }
+    .item > div {
+        width: 80%;
+        height: 10%;
+        flex-flow: row nowrap;
+        justify-content: flex-end;
+    }
+    .item > div > img {
+        width: 8%;
+        margin: 1%;
+    }
+}

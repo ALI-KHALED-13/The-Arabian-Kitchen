@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title> المطبخ العربي || من نحن</title></head>
+<body dir="rtl" onload="updateCartButt()">
+    <header>
+        <div id='logo'>
+            <img src='photos/logo.jpg' alt='logo'/>
+            <h1>مطعم المطبخ العربي</h1>
+        </div>
+    </header>
+
+    <a href="cart.html" id="cart"><span>0</span> عربة التسوق</a>
+    <img src='photos/backToTop.png' alt='back to top' class='toTop'>
+    
+    <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="وجبات.html">الوجبات الرئيسية</a>
+        <a href="مشروبات.html">المشروبات</a>
+        <a href="حلا.html">التحلية</a>
+        <a href="عنا.html">من نحن</a>
+    </nav>
+
+    <main class="hall">
+        <h1>من نحن ؟؟</h1>
+        <p>هذا الموقع تم تصميمه وبناءه بواسطة<a href='https://www.linkedin.com/in/ali-khaled-130013/' target="_blank">علي خالد سعيد</a></p> 
+        <img src='photos/circle-cropped.png' alt="author picture" width="80%">
+
+        <p> تواصل <a href='mailto:aliknake#gmail.com'><img src='photos/Logo_Gmail.png' alt='email' width="5%"> </a>
+            <br>
+            أعمال أخرى: <a href='https://github.com/ALI-KHALED-13' target="_blank"><img src='photos/github_logo.png' alt='github' width="5%"> </a>
+        </p>
+        
+    </main>
+    <footer>
+        <p>جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script>
+        function updateCartButt(){
+            cartCount = document.getElementById("cart").firstElementChild;
+            currentCount = JSON.parse(sessionStorage.getItem("products")).count;
+            cartCount.innerHTML = currentCount;
+        }
+    </script>
+    
+</body>
+</html>

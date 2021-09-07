@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <meta name="keywords" content='arabic, dishes, meals, food, arab, restaurant, oriental, مطعم, مأكولات, شرقية, نجدية, بدوية, طبق'>
+    <meta name="description" content="online restaurant for arabian and oriental food || مطعم المطبخ العربي للماكولات العربية النجدية">
+    <meta name="author" content="Ali Khaled Said">
+    <title>مطعم المطبخ العربي</title>
+</head>
+<body dir="rtl" onload="updateCartButt()">
+    <header>
+        <div id='logo'>
+            <img src='photos/logo.jpg' alt='logo'/>
+            <h1>مطعم المطبخ العربي</h1>
+        </div>
+
+        <img src="photos/left_arrow.png" alt='left_arrow'>
+        <img src="photos/right_arrow.png" alt='right_arrow'>
+
+        <div id='slideshow'>
+            <img src='photos/madghot.jpg' alt='مضغوط' />
+            <img src='photos/mafrooka.jpg' alt='مفروكة' />
+            <img src='photos/samposa.jpg' alt='سمبوسة' />
+            <img src='photos/mandiChick.jpg' alt='مندي' />
+            <img src='photos/tase.jpg' alt='تيس' />
+            <img src='photos/kabsa-hashi.jpg' alt='كبسة حاشي' />
+        </div>
+    </header>
+
+    <a href="cart.html" id="cart"><span>0</span> عربة التسوق</a>
+    <img src='photos/backToTop.png' alt='back to top' class='toTop' />
+    
+    <main>
+        <article>
+            <section>
+                <img src="photos/main-photo2.jpg" alt="الرئيسية" />
+            </section>
+            <section>
+                <p>
+                    أهلا بك في مطعمنا, اطلب ما تشتهي وخلي الباقي علينا😉
+                </p>
+            </section>
+        </article>
+
+        <article>
+            <section>
+                <p>
+                    حدد <a href="وجبات.html"> وجبتك الرئيسية</a> من مختلف الاصناف
+                </p>
+            </section>
+            <section>
+                <img src="photos/main-photo1.jpg" alt="الرئيسية" />
+            </section>
+        </article>
+
+        <article>
+            <section>
+                <img src="photos/main-7la.jpg" alt="الرئيسية" />
+            </section>
+            <section>
+                <p>
+                    وقت <a href="حلا.html">الحلا</a> يا حلا؟🍡
+                </p>
+            </section>
+        </article>
+        
+        <article>
+            <section>
+                <p>
+                    رطب طلبك <a href="مشروبات.html">بمشروب</a> 🍹
+                </p>
+            </section>
+            <section>
+                <img src="photos/drinks.jpg" alt="الرئيسية" />
+            </section>
+        </article>
+
+    </main>
+    <footer>
+        <a href="عنا.html" style="color:inherit">من نحن</a>
+        <p>جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script>
+        if (!sessionStorage.getItem("products")) sessionStorage.setItem("products", JSON.stringify({count: 0})); 
+
+        let header = document.getElementsByTagName("header")[0]
+        function updateCartButt(){
+            cartCount = document.getElementById("cart").firstElementChild;
+            currentCount = JSON.parse(sessionStorage.getItem("products")).count;
+            cartCount.innerHTML = currentCount;
+        }
+        //////////////// to top button script
+        toTop()
+        window.onscroll =()=> toTop();
+        function toTop(){
+            let toTopBtn = document.querySelector(".toTop");
+            toTopBtn.onclick =()=> document.documentElement.scrollTop = 0;
+            cord = window.pageYOffset - header.offsetHeight > header.offsetHeight
+            toTopBtn.style.display = cord? "block":"none";
+        }
+
+        ///////////////////////// the slideshow script
+
+        const slideshow = document.getElementById('slideshow');
+        let arrows = document.querySelectorAll("[alt$='arrow']");
+
+        arrows.forEach(arrow=> arrow.addEventListener('click', ()=> slideIt(arrow.alt)));
+
+        function slideIt(direction){
+            direction = direction.slice(0, direction.indexOf('_'));
+            const shiftNum = (direction == "left")? - slideshow.firstElementChild.offsetWidth : slideshow.firstElementChild.offsetWidth //-350 : 350;
+            slideshow.scrollLeft = slideshow.scrollLeft  + shiftNum * 2;
+        }
+        // auto slide
+        let fromLeft = slideshow.scrollLeft;
+        let destination = 'left_';
+        function autoSlide(){
+            if (slideshow.scrollLeft == fromLeft){ //if no action from the user "scrollLeft didn't change"
+                slideIt(destination);
+                if (slideshow.scrollLeft == fromLeft){ // if still no change occurs i.e: we are at the end
+                    destination = slideshow.scrollLeft > -2? 'left_':'right_';
+                    return; // no call, 4 seconds wait
+                }
+                fromLeft = slideshow.scrollLeft;
+            } else {
+                fromLeft = slideshow.scrollLeft; 
+            }
+        }
+
+        let timer = setTimeout(function regular(){
+            autoSlide();
+            timer = setTimeout(regular, 2000)
+        }, 3000)
+    </script>
+    
+</body>
+</html>
